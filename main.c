@@ -7,77 +7,105 @@
 #define true 1
 #define false 0
 
-
-
-int main () 
+int main()
 {
-    FILE *userdate = fopen("numbers.tdb", "a");
+    FILE *userdate = fopen("numbers.tdb", "a+");
 
-    if(userdate == NULL)
-            {
-                printf("Erro ao abrir o arquivo\n");
+    if (userdate == NULL)
+    {
+        printf("Erro ao abrir o arquivo\n");
 
-                return 1;
-            }
+        return 1;
+    }
 
-
-    char chave[50];
-    int valor;
     while (true)
     {
-        char* input = readline("tinydb> ");
+        char *input = readline("tinydb> ");
         add_history(input);
 
-        if(strcmp("EXIT", input) == 0)
+        if (strcmp("EXIT", input) == 0)
         {
             break;
         }
 
-
-        if(strstr(input, "PUT "))
+        if (strstr(input, "PUT "))
         {
-            char* key = NULL;
-            char* value = NULL;
+            char *key = NULL;
+            char *value = NULL;
 
-            for (int i = 4; input[i] != '\0'; i++) {
-                if (key == NULL) {
+            for (int i = 4; input[i] != '\0'; i++)
+            {
+                if (key == NULL)
+                {
                     key = &input[i];
+                }
 
-                }   
-
-                if (input[i] == ' ') {
+                if (input[i] == ' ')
+                {
                     input[i] = '\0';
                     value = &input[i + 1];
                     break;
                 }
             }
 
-        if(key == NULL)
-        {
-            puts("Não foi digitada chave");
+            if (key == NULL)
+            {
+                puts("Não foi digitada chave");
 
-            free(input);
+                free(input);
 
-            continue;
-        }        
+                continue;
+            }
 
-        if(strlen(value) < 1)
-        {
+            if (value == NULL)
+            {
 
-            puts("Não foi digitado o valor\n");
+                puts("Não foi digitado o valor\n");
 
-            free(input);
+                free(input);
 
-            continue;
+                continue;
+            }
+
+            fprintf(userdate, "%s %s\n", key, value);
+            fflush(userdate);
+            rewind(userdate);
         }
 
+        if (strstr(input, "GET "))
+        {
+            char *key = NULL;
 
+            key = input + 4;
 
+            if (key == NULL)
+            {
+                puts("Não foi digitada chave");
 
+                continue;
+            }
+
+            char line[256];
+
+            while (fgets(line, sizeof(line), userdate) != NULL)
+            {
+
+                line[strcspn(line, "\n")] = '\0';
+
+                if (strstr(line, key))
+                {
+                    char *value = &line[strcspn(line, " ") + 1];
+
+                    puts(value);
+
+                    break;
+                }
+            }
+
+            rewind(userdate);
         }
 
-
-    free(input);
+        free(input);
     }
 
     fclose(userdate);

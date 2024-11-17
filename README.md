@@ -26,8 +26,16 @@ Tudo isso será armazenado em apenas um arquivo e os dados devem persistir em di
 
 ## Etapas
 
-- Ler o camando em um loop, caso a pessoa digite "EXIT" o programa deve parar.
+- Ler o camando em um loop, caso a pessoa digite "EXIT" o programa deve parar. X
 - Interpretar o comando digitado
-- Executar o comando
-- PUT: Adicionar no arquivo a chave e o valor digitado
-- GET: Buscar no arquivo pela chave e retornar o valor
+    - PUT feito. X
+    - GET a fazer;
+
+- Executar o comando 
+    - PUT feito em partes, falta escrever no arquivo;
+    - GET a fazer;
+- PUT: Adicionar no arquivo a chave e o valor digitado; X
+- GET: Buscar no arquivo pela chave e retornar o valor; X
+- Receber um arquivo .tdb como argumento do programa;
+- Testar se você der "free" no input original libera a chave e o valor;
+    - Testado, ele limpa a variável input; free deve estar depois da escrita no arquivo.

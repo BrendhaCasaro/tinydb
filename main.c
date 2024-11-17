@@ -8,10 +8,19 @@
 #define false 0
 
 
-FILE *userdate;
 
-void main () 
+int main () 
 {
+    FILE *userdate = fopen("numbers.tdb", "a");
+
+    if(userdate == NULL)
+            {
+                printf("Erro ao abrir o arquivo\n");
+
+                return 1;
+            }
+
+
     char chave[50];
     int valor;
     while (true)
@@ -24,24 +33,53 @@ void main ()
             break;
         }
 
-        userdate = fopen("PUTs_user.txt", "a");
-
-        if(userdate == NULL)
-            {
-                printf("Erro ao abrir o arquivo\n");
-
-                break;
-            }
 
         if(strstr(input, "PUT "))
         {
-            sscanf(input, "%d", &valor);
-            fprintf(userdate, "%d", valor);
+            char* key = NULL;
+            char* value = NULL;
+
+            for (int i = 4; input[i] != '\0'; i++) {
+                if (key == NULL) {
+                    key = &input[i];
+
+                }   
+
+                if (input[i] == ' ') {
+                    input[i] = '\0';
+                    value = &input[i + 1];
+                    break;
+                }
+            }
+
+        if(key == NULL)
+        {
+            puts("Não foi digitada chave");
+
+            free(input);
+
+            continue;
+        }        
+
+        if(strlen(value) < 1)
+        {
+
+            puts("Não foi digitado o valor\n");
+
+            free(input);
+
+            continue;
         }
 
-    free(input);
-    fclose(userdate);
 
-    break;
+
+
+        }
+
+
+    free(input);
     }
+
+    fclose(userdate);
+    return 0;
 }

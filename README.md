@@ -28,21 +28,19 @@ Tudo isso será armazenado em apenas um arquivo e os dados devem persistir em di
 
 - Ler o camando em um loop, caso a pessoa digite "EXIT" o programa deve parar. X
 - Interpretar o comando digitado
-    - PUT feito. X
-    - GET feito. X
+    - PUT feito.
+    - GET feito.
 
 - Executar o comando 
-    - PUT feito; X
-    - GET feito; X
-- PUT: Adicionar no arquivo a chave e o valor digitado; X
-- GET: Buscar no arquivo pela chave e retornar o valor; X
-- Receber um arquivo .tdb como argumento do programa;
-- Testar se você der "free" no input original libera a chave e o valor; X
-    - Testado, ele limpa a variável input; free deve estar depois da escrita no arquivo.
+    - PUT feito;
+    - GET feito;
+- PUT: Adicionar no arquivo a chave e o valor digitado;
+- GET: Buscar no arquivo pela chave e retornar o valor;
+- Receber um arquivo .tdb como argumento do programa.
 
 
+Futuro:
     - Avisar quando o comando não existe
     - chave com espaço
     - chave duplicada
     - get em chave inexistente
-    - 

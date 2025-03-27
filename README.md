@@ -22,10 +22,3 @@ Ex:
 ```
 
 Tudo isso será armazenado em apenas um arquivo e os dados devem persistir em diferentes execuções.
-
-
-Futuro:
-    - Avisar quando o comando não existe
-    - chave com espaço
-    - chave duplicada
-    - get em chave inexistente
